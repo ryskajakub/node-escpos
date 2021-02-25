@@ -61,7 +61,7 @@ RawBT.prototype.close = function(callback){
   let data = "intent:base64,";
   let buf = this.buffer.flush();
   data = data + Buffer.from(buf).toString('base64');
-  data = data + "#Intent;scheme=RawBT;package=ru.a402d.RawBTprinter;end;";
+  data = data + "#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end;";
   this.handler && this.handler(data);
   callback && callback();
   return this;
