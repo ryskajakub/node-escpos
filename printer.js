@@ -33,6 +33,16 @@ Printer.create = function (device) {
   return Promise.resolve(Promiseify(printer))
 };
 
+Printer.prototype.raw = function raw(data) {
+  if (Buffer.isBuffer(data)) {
+    this.buffer.write(data);
+  } else if (typeof data === 'string') {
+    data = data.toLowerCase();
+    this.buffer.write(Buffer.from(data.replace(/(\s|:)/g, ''), 'hex'));
+  }
+  return this;
+};
+
 /**
  * Printer extends EventEmitter
  */
